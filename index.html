@@ -5,74 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unidad 7: Diseño de Estructuras de Navegación Claras</title>
     <style>
-        /* Estilos basados en Burdeos y Blanco */
+        /* Estilos basados en Burdeos (#800020) y Blanco (#FFFFFF) */
         body {
             font-family: Arial, sans-serif;
             line-height: 1.6;
             margin: 0;
-            background-color: #F8F8F8; /* Blanco muy suave */
+            background-color: #F8F8F8;
             color: #333;
         }
-        .container {
-            max-width: 800px;
-            margin: 40px auto;
-            background: #FFFFFF; /* Fondo blanco */
+        .header-fixed {
+            background-color: #800020; /* Burdeos para el menú fijo */
+            color: #FFFFFF;
+            padding: 10px 0;
+            position: fixed; /* 👈 Menú fijo */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .header-fixed nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
+        }
+        .header-fixed nav a {
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 5px 15px;
+            font-weight: bold;
+        }
+        .header-fixed nav a:hover {
+            background-color: #B71C1C; /* Burdeos más vivo al pasar el ratón */
+            border-radius: 4px;
+        }
+
+        .main-content-wrapper {
+            display: flex;
+            max-width: 1200px;
+            margin: 60px auto 40px auto; /* Deja espacio para el menú fijo */
+            padding: 0 20px;
+        }
+        .sidebar {
+            width: 25%;
+            padding-right: 20px;
+        }
+        .sidebar h3 {
+            color: #800020;
+            border-bottom: 2px solid #D7CCC8;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul a {
+            display: block;
+            padding: 8px 0;
+            color: #5C0016;
+            text-decoration: none;
+            border-left: 3px solid transparent;
+        }
+        .sidebar ul a:hover {
+            color: #B71C1C;
+            border-left: 3px solid #B71C1C; /*👈 Navegación lateral resaltada */
+            background-color: #f4e9e9;
+        }
+
+        .content {
+            flex-grow: 1;
+            width: 75%;
+            background: #FFFFFF;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
+
+        /* Estilos del contenido principal */
         h1 {
-            color: #800020; /* Burdeos oscuro */
-            border-bottom: 2px solid #B71C1C; /* Burdeos vivo */
+            color: #800020;
+            border-bottom: 2px solid #B71C1C;
             padding-bottom: 15px;
             text-align: center;
             font-size: 2.2em;
         }
         h2 {
-            color: #5C0016; /* Burdeos más oscuro */
+            color: #5C0016;
             margin-top: 35px;
-            margin-bottom: 15px;
-            font-size: 1.6em;
-            border-left: 5px solid #800020; /* Barra burdeos */
-            padding-left: 10px;
-        }
-        /* Estilos generales para listas (Objetivos y Técnicas) */
-        .content-list {
-            list-style-type: none;
-            padding: 0;
-            margin-left: 20px;
-        }
-        .content-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            color: #444;
-        }
-        .content-list li:before {
-            content: '•'; /* Viñeta burdeos */
-            color: #800020;
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-            line-height: 1;
-            font-weight: bold;
-        }
-        hr {
-            border: 0;
-            height: 1px;
-            background-image: linear-gradient(to right, rgba(128, 0, 32, 0), rgba(128, 0, 32, 0.75), rgba(128, 0, 32, 0));
-            margin: 30px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Unidad 7: Diseño de Estructuras de Navegación Claras</h1>
-
-        <hr>
-
-        <h2>Objetivos:</h2>
-        <ul class="content-list">
-            <li>Comprender la importancia de la **navegación en UX** (Experiencia de Usuario).</li>
-            <li>Analizar **principios** para una navegación clara y accesible.</li>
-            <li>Identificar su influencia en la **usabilidad y el SEO** (Optimización para Motores de B
+            margin-bottom: 15px
