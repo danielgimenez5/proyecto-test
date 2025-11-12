@@ -96,4 +96,126 @@
         h2 {
             color: #5C0016;
             margin-top: 35px;
-            margin-bottom: 15px
+            margin-bottom: 15px;
+            font-size: 1.6em;
+            border-left: 5px solid #800020;
+            padding-left: 10px;
+        }
+        .breadcrumb {
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            color: #666;
+        }
+        .breadcrumb a {
+            color: #5C0016;
+            text-decoration: none;
+        }
+        .breadcrumb span {
+            color: #800020;
+            font-weight: bold;
+        }
+
+        p {
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+        .content-list {
+            list-style-type: none;
+            padding: 0;
+            margin-left: 20px;
+        }
+        .content-list li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+            color: #444;
+        }
+        .content-list li:before {
+            content: '•';
+            color: #800020;
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+            line-height: 1;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-fixed">
+        <nav>
+            <div><a href="#inicio">Inicio</a></div>
+            <div class="dropdown">
+                <a href="#unidades">Unidades ▼</a>
+                </div>
+            <div><a href="#bibliografia">Recursos</a></div>
+            <form action="#search">
+                <input type="text" placeholder="Buscar en la unidad..." style="padding: 5px; border: none; border-radius: 3px;">
+                <button type="submit" style="background: #B71C1C; color: white; border: none; padding: 5px 10px; border-radius: 3px;">🔍</button>
+            </form>
+        </nav>
+    </header>
+
+    <div class="main-content-wrapper">
+        <aside class="sidebar">
+            <h3>Contenido de la Unidad</h3>
+            <ul>
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#principios">Principios UX</a></li>
+                <li><a href="#impacto">Impacto en SEO</a></li>
+                <li><a href="#tecnicas">Técnicas Clave</a></li>
+                <li><a href="#evaluacion">Evaluación</a></li>
+            </ul>
+        </aside>
+
+        <main class="content">
+            <div class="breadcrumb">
+                <a href="#inicio">Inicio</a> &gt; <a href="#modulos">Módulo Diseño Web</a> &gt; <span>Unidad 7: Navegación</span>
+            </div>
+
+            <h1>Unidad 7: Diseño de Estructuras de Navegación Claras</h1>
+
+            <section id="objetivos">
+                <h2>Objetivos:</h2>
+                <ul class="content-list">
+                    <li>Comprender la importancia de la **navegación en UX** (Experiencia de Usuario) como mapa del sitio.</li>
+                    <li>Analizar **principios** para una navegación clara, predecible y accesible.</li>
+                    <li>Identificar su influencia directa en la **usabilidad y el SEO**.</li>
+                </ul>
+            </section>
+
+            <section id="principios">
+                <h2>Principios Fundamentales de UX para la Navegación:</h2>
+                <p>La clave de una buena navegación radica en la anticipación de las necesidades del usuario. Una estructura sólida reduce la carga cognitiva y evita la frustración.</p>
+                <ul class="content-list">
+                    <li>**Consistencia:** Los elementos de navegación deben ubicarse y comportarse de la misma manera en todas las páginas.</li>
+                    <li>**Claridad y Etiquetado:** Usar un lenguaje sencillo y familiar; evitar jerga. "Productos" es mejor que "Inventario".</li>
+                    <li>**Minimalismo (Principio de Fitts):** Reducir el número de opciones visibles en un menú principal para facilitar la toma de decisiones.</li>
+                    <li>**Feedback:** Proporcionar una indicación clara de la ubicación actual del usuario (p. ej., con las Migas de Pan).</li>
+                </ul>
+            </section>
+
+            <section id="impacto">
+                <h2>Impacto en Usabilidad y SEO:</h2>
+                <p>Una navegación bien diseñada no solo ayuda a los usuarios, sino que también facilita la labor de los motores de búsqueda para rastrear e indexar el contenido, mejorando el **PageRank interno**.</p>
+                <ul class="content-list">
+                    <li>**Usabilidad:** Un camino claro reduce las tasas de rebote y aumenta la tasa de finalización de tareas (compras, registros).</li>
+                    <li>**SEO:** Los enlaces internos transmiten autoridad. Una jerarquía lógica asegura que el contenido más importante reciba la mayor "fuerza" de enlace.</li>
+                </ul>
+            </section>
+
+            <section id="tecnicas">
+                <h2>Técnicas Clave de Implementación:</h2>
+                <ul class="content-list">
+                    <li>**Menús fijos** (*Sticky Menus*): Mantienen los enlaces principales visibles sin importar el desplazamiento (implementado en el `<header>`).</li>
+                    <li>**Navegación lateral** (*Sidebar Navigation*): Ideal para módulos de aplicación o para listas de subcategorías (implementado en el `<aside>`).</li>
+                    <li>**Migas de pan** (*Breadcrumb*): Muestra la ruta de navegación jerárquica para la orientación (implementado arriba del título `<h1>`).</li>
+                    <li>**Menús desplegables o secundarios** (*Dropdowns*): Organizan muchos enlaces bajo una etiqueta principal (simulado en el menú fijo).</li>
+                    <li>**Búsqueda interna**: Permite a los usuarios saltarse la navegación y encontrar contenido directo (implementado en el menú fijo).</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
