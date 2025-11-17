@@ -3,219 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unidad 7: Diseño de Estructuras de Navegación Claras</title>
+    <title>Página Responsive Didáctica</title>
     <style>
-        /* Estilos basados en Burdeos (#800020) y Blanco (#FFFFFF) */
+        /* Estilos Base (Móvil Primero) */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #F8F8F8;
+            background-color: #f4f4f9;
             color: #333;
+            text-align: center;
         }
-        .header-fixed {
-            background-color: #800020; /* Burdeos para el menú fijo */
-            color: #FFFFFF;
-            padding: 10px 0;
-            position: fixed; /* 👈 Menú fijo */
+
+        /* Encabezado Fijo */
+        header {
+            background-color: #007bff; /* Azul primario */
+            color: white;
+            padding: 20px 0;
+            position: sticky;
             top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
+            z-index: 100;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
-        .header-fixed nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: auto;
-            padding: 0 20px;
-        }
-        .header-fixed nav a {
-            color: #FFFFFF;
-            text-decoration: none;
-            padding: 5px 15px;
-            font-weight: bold;
-        }
-        .header-fixed nav a:hover {
-            background-color: #B71C1C; /* Burdeos más vivo al pasar el ratón */
-            border-radius: 4px;
+        header h1 {
+            margin: 0;
         }
 
-        .main-content-wrapper {
-            display: flex;
-            max-width: 1200px;
-            margin: 60px auto 40px auto; /* Deja espacio para el menú fijo */
-            padding: 0 20px;
-        }
-        .sidebar {
-            width: 25%;
-            padding-right: 20px;
-        }
-        .sidebar h3 {
-            color: #800020;
-            border-bottom: 2px solid #D7CCC8;
-            padding-bottom: 5px;
-            margin-top: 0;
-        }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        .sidebar ul a {
-            display: block;
-            padding: 8px 0;
-            color: #5C0016;
-            text-decoration: none;
-            border-left: 3px solid transparent;
-        }
-        .sidebar ul a:hover {
-            color: #B71C1C;
-            border-left: 3px solid #B71C1C; /*👈 Navegación lateral resaltada */
-            background-color: #f4e9e9;
-        }
-
-        .content {
-            flex-grow: 1;
-            width: 75%;
-            background: #FFFFFF;
-            padding: 30px;
+        /* --------------------------------- */
+        /* Contenedor Principal de los Bloques */
+        /* --------------------------------- */
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            display: flex; /* Usamos Flexbox para el layout */
+            flex-direction: column; /* POR DEFECTO: Columnas (Móvil) */
+            gap: 20px;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
         }
 
-        /* Estilos del contenido principal */
-        h1 {
-            color: #800020;
-            border-bottom: 2px solid #B71C1C;
-            padding-bottom: 15px;
-            text-align: center;
-            font-size: 2.2em;
-        }
-        h2 {
-            color: #5C0016;
-            margin-top: 35px;
-            margin-bottom: 15px;
-            font-size: 1.6em;
-            border-left: 5px solid #800020;
-            padding-left: 10px;
-        }
-        .breadcrumb {
-            margin-bottom: 20px;
-            font-size: 0.9em;
-            color: #666;
-        }
-        .breadcrumb a {
-            color: #5C0016;
-            text-decoration: none;
-        }
-        .breadcrumb span {
-            color: #800020;
-            font-weight: bold;
+        /* Estilo de cada Bloque de Contenido */
+        .block {
+            padding: 20px;
+            border-radius: 6px;
+            text-align: left;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
         }
 
-        p {
-            margin-bottom: 15px;
-            text-align: justify;
-        }
-        .content-list {
-            list-style-type: none;
-            padding: 0;
-            margin-left: 20px;
-        }
-        .content-list li {
-            margin-bottom: 12px;
-            padding-left: 25px;
-            position: relative;
-            color: #444;
-        }
-        .content-list li:before {
-            content: '•';
-            color: #800020;
-            position: absolute;
-            left: 0;
-            font-size: 1.2em;
-            line-height: 1;
+        /* Estilos Específicos para Bloques */
+        .block-1 { background-color: #e0f7fa; border-color: #00bcd4; } /* Cian claro */
+        .block-2 { background-color: #fff3e0; border-color: #ff9800; } /* Naranja claro */
+        .block-3 { background-color: #e8f5e9; border-color: #4caf50; } /* Verde claro */
+
+        /* Indicador Didáctico */
+        #device-indicator {
+            padding: 10px;
+            margin-top: 10px;
             font-weight: bold;
+            background-color: #ffcc00; /* Amarillo didáctico */
+            border-radius: 4px;
+            color: #333;
+        }
+
+        /* ================================================= */
+        /* 1. MEDIA QUERY para TABLET (Ancho mínimo: 600px) */
+        /* ================================================= */
+        @media (min-width: 600px) {
+            #device-indicator {
+                content: "Dispositivo: TABLET (600px - 1023px) - Diseño: 2 Columnas";
+                background-color: #ff9800; /* Naranja */
+            }
+
+            .container {
+                /* Cambia a 2 columnas principales */
+                flex-direction: row;
+                flex-wrap: wrap; /* Permite que los elementos se envuelvan */
+            }
+
+            .block {
+                /* Dos bloques ocupan el 48% para dejar un 4% de espacio entre ellos */
+                width: 48%; 
+            }
+
+            /* Hacemos que el primer bloque (principal) ocupe todo el ancho */
+            .block-1 {
+                width: 100%; /* El primer bloque ocupa toda la fila superior */
+                order: -1; /* Asegura que el bloque 1 siempre vaya primero */
+            }
+        }
+
+        /* ==================================================== */
+        /* 2. MEDIA QUERY para ESCRITORIO (Ancho mínimo: 1024px) */
+        /* ==================================================== */
+        @media (min-width: 1024px) {
+            #device-indicator {
+                content: "Dispositivo: ESCRITORIO (1024px+) - Diseño: 3 Columnas";
+                background-color: #4caf50; /* Verde */
+            }
+
+            .container {
+                /* Mantenemos flex-direction: row y flex-wrap: wrap */
+                flex-wrap: nowrap; /* Evitamos que se envuelvan para forzar 3 en fila */
+                gap: 30px; /* Más espacio entre columnas */
+            }
+
+            .block {
+                /* Los tres bloques se dividen el espacio de forma equitativa */
+                width: calc(33.33% - 20px); /* 1/3 del ancho menos el espacio del gap */
+            }
+
+            .block-1 {
+                /* En escritorio, el bloque 1 vuelve a ser un tercio */
+                width: calc(33.33% - 20px);
+                order: 0; /* Vuelve a su orden normal */
+            }
         }
     </style>
 </head>
 <body>
 
-    <header class="header-fixed">
-        <nav>
-            <div><a href="#inicio">Inicio</a></div>
-            <div class="dropdown">
-                <a href="#unidades">Unidades ▼</a>
-                </div>
-            <div><a href="#bibliografia">Recursos</a></div>
-            <form action="#search">
-                <input type="text" placeholder="Buscar en la unidad..." style="padding: 5px; border: none; border-radius: 3px;">
-                <button type="submit" style="background: #B71C1C; color: white; border: none; padding: 5px 10px; border-radius: 3px;">🔍</button>
-            </form>
-        </nav>
+    <header>
+        <h1>Página Web Didáctica Responsive</h1>
+        <div id="device-indicator">
+            Dispositivo: MÓVIL (Menos de 600px) - Diseño: 1 Columna
+        </div>
     </header>
 
-    <div class="main-content-wrapper">
-        <aside class="sidebar">
-            <h3>Contenido de la Unidad</h3>
-            <ul>
-                <li><a href="#objetivos">Objetivos</a></li>
-                <li><a href="#principios">Principios UX</a></li>
-                <li><a href="#impacto">Impacto en SEO</a></li>
-                <li><a href="#tecnicas">Técnicas Clave</a></li>
-                <li><a href="#evaluacion">Evaluación</a></li>
-            </ul>
-        </aside>
+    <main class="container">
+        
+        <div class="block block-1">
+            <h2>Bloque 1: Contenido Principal</h2>
+            <p>Este bloque representa el área más importante de la página. En un móvil ocupa el 100% del ancho. En una Tablet, también lo hace (simulando una sección destacada). En un Escritorio, comparte el espacio con los otros dos bloques.</p>
+            <p>El diseño "mobile-first" garantiza que el sitio sea rápido y funcional incluso en conexiones lentas.</p>
+        </div>
+        
+        <div class="block block-2">
+            <h2>Bloque 2: Información Secundaria</h2>
+            <p>Este bloque a menudo contiene listas de productos, noticias relacionadas o un menú lateral. Se coloca debajo del Bloque 1 en móvil.</p>
+            <p><strong>Punto de quiebre (600px):</strong> A partir de este ancho, se alineará junto al Bloque 3, debajo del Bloque 1.</p>
+            <p><strong>Punto de quiebre (1024px):</strong> A partir de este ancho, se alineará junto al Bloque 1 y el Bloque 3 en una sola fila de tres columnas.</p>
+        </div>
+        
+        <div class="block block-3">
+            <h2>Bloque 3: Publicidad / Widgets</h2>
+            <p>Esta área puede ser para anuncios, redes sociales o cualquier widget de poca prioridad. Se coloca al final en la vista móvil.</p>
+            <p>Al redimensionar la ventana de tu navegador, observa cómo la indicación de dispositivo y la estructura de los bloques cambian automáticamente, demostrando el uso de **Flexbox** y **Media Queries**.</p>
+        </div>
 
-        <main class="content">
-            <div class="breadcrumb">
-                <a href="#inicio">Inicio</a> &gt; <a href="#modulos">Módulo Diseño Web</a> &gt; <span>Unidad 7: Navegación</span>
-            </div>
-
-            <h1>Unidad 7: Diseño de Estructuras de Navegación Claras</h1>
-
-            <section id="objetivos">
-                <h2>Objetivos:</h2>
-                <ul class="content-list">
-                    <li>Comprender la importancia de la **navegación en UX** (Experiencia de Usuario) como mapa del sitio.</li>
-                    <li>Analizar **principios** para una navegación clara, predecible y accesible.</li>
-                    <li>Identificar su influencia directa en la **usabilidad y el SEO**.</li>
-                </ul>
-            </section>
-
-            <section id="principios">
-                <h2>Principios Fundamentales de UX para la Navegación:</h2>
-                <p>La clave de una buena navegación radica en la anticipación de las necesidades del usuario. Una estructura sólida reduce la carga cognitiva y evita la frustración.</p>
-                <ul class="content-list">
-                    <li>**Consistencia:** Los elementos de navegación deben ubicarse y comportarse de la misma manera en todas las páginas.</li>
-                    <li>**Claridad y Etiquetado:** Usar un lenguaje sencillo y familiar; evitar jerga. "Productos" es mejor que "Inventario".</li>
-                    <li>**Minimalismo (Principio de Fitts):** Reducir el número de opciones visibles en un menú principal para facilitar la toma de decisiones.</li>
-                    <li>**Feedback:** Proporcionar una indicación clara de la ubicación actual del usuario (p. ej., con las Migas de Pan).</li>
-                </ul>
-            </section>
-
-            <section id="impacto">
-                <h2>Impacto en Usabilidad y SEO:</h2>
-                <p>Una navegación bien diseñada no solo ayuda a los usuarios, sino que también facilita la labor de los motores de búsqueda para rastrear e indexar el contenido, mejorando el **PageRank interno**.</p>
-                <ul class="content-list">
-                    <li>**Usabilidad:** Un camino claro reduce las tasas de rebote y aumenta la tasa de finalización de tareas (compras, registros).</li>
-                    <li>**SEO:** Los enlaces internos transmiten autoridad. Una jerarquía lógica asegura que el contenido más importante reciba la mayor "fuerza" de enlace.</li>
-                </ul>
-            </section>
-
-            <section id="tecnicas">
-                <h2>Técnicas Clave de Implementación:</h2>
-                <ul class="content-list">
-                    <li>**Menús fijos** (*Sticky Menus*): Mantienen los enlaces principales visibles sin importar el desplazamiento (implementado en el `<header>`).</li>
-                    <li>**Navegación lateral** (*Sidebar Navigation*): Ideal para módulos de aplicación o para listas de subcategorías (implementado en el `<aside>`).</li>
-                    <li>**Migas de pan** (*Breadcrumb*): Muestra la ruta de navegación jerárquica para la orientación (implementado arriba del título `<h1>`).</li>
-                    <li>**Menús desplegables o secundarios** (*Dropdowns*): Organizan muchos enlaces bajo una etiqueta principal (simulado en el menú fijo).</li>
-                    <li>**Búsqueda interna**: Permite a los usuarios saltarse la navegación y encontrar contenido directo (implementado en el menú fijo).</li>
-                </ul>
-            </section>
-        </main>
-    </div>
+    </main>
+    
 </body>
 </html>
