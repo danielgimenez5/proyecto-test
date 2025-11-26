@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Drag and Drop en un solo archivo</title>
+    
+    <style>
+        /* --- ESTILOS CSS --- */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .draggable {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: grab;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.2s;
+            width: 200px;
+            text-align: center;
+        }
+
+        .dropzone {
+            border: 3px dashed #aaa;
+            background-color: #ecf0f1;
+            min-height: 100px;
+            width: 250px;
+            padding: 10px;
+            margin: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        /* Clases para estados de Drag and Drop */
+        .dragging {
+            opacity: 0.4;
+        }
+
+        .drag-over {
+            border-color: #27ae60;
+            background-color: #e8f5e9;
+        }
+
+        .container, .drop-container {
+            display: flex;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="item1" class="draggable" draggable="true">Arrastrar elemento 1</div>
+        <div id="item2" class="draggable" draggable="true">Arrastrar elemento 2</div>
+    </div>
+
+    <div class="drop-container">
+        <div class="dropzone" id="dropzone1">Zona de Soltar A</div>
+        <div class="dropzone" id="dropzone2">Zona de Soltar B</div>
+    </div>
+
+    <script>
+        // --- LÓGICA JAVASCRIPT ---
+        const draggables = document.querySelectorAll('.draggable');
+        const dropzones = document.querySelectorAll('.dropzone');
+
+        // Eventos del Elemento Arrastrable
+        draggables.forEach(item => {
+            item.addEventListener('dragstart', (e) => {
+                // 1. Guardar el ID del elemento que se va a arrastrar
+                e.target.classList.add('dragging');
+                e.dataTransfer.setData('text/plain', e.target.id); 
+            });
+
+            item.addEventListener('dragend', (e) => {
+                // 2. Limpiar la clase al finalizar el arrastre
+                e.target.classList.remove('dragging');
+            });
+        });
+
+        // Eventos de la Zona de Soltar
+        dropzones.forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                // 3. Importante: Prevenir el comportamiento por defecto para permitir el 'drop'
+                e.preventDefault(); 
+                zone.classList.add('drag-over');
+            });
+
+            zone.addEventListener('dragleave', () => {
+                // 4. Limpiar el estilo de resaltado
+                zone.classList.remove('drag-over');
+            });
+
+            zone.addEventListener('drop', (e
