@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi TV YouTube</title>
+    <title>TV HCI eUniv</title>
     <style>
-        /* 2. DISEÑO DE LA TELEVISIÓN CON CSS */
         body {
             background-color: #f0f0f0;
             display: flex;
@@ -16,15 +15,13 @@
             font-family: Arial, sans-serif;
         }
 
-        /* El contenedor principal de la TV */
         .tv-set {
             position: relative;
             text-align: center;
         }
 
-        /* Marco de la TV */
         .tv-frame {
-            background-color: #2c3e50; /* Color oscuro para el marco */
+            background-color: #2c3e50;
             padding: 20px 20px 40px 20px;
             border-radius: 25px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
@@ -33,7 +30,31 @@
             position: relative;
         }
 
-        /* Área de la pantalla */
+        /* --- AQUÍ ESTÁN LOS CAMBIOS PARA EL LOGO --- */
+        .tv-brand {
+            color: #bdc3c7;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            
+            /* Flexbox para alinear logo y texto */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px; /* Espacio entre el logo y el texto */
+        }
+
+        .tv-logo {
+            height: 40px; /* Altura del logo, ajústalo si lo ves muy grande/pequeño */
+            width: auto;
+            border-radius: 4px; /* Opcional: bordes un poco suaves para el logo */
+            background-color: white; /* Fondo blanco por si el logo es transparente */
+            padding: 2px;
+        }
+        /* ------------------------------------------- */
+
         .screen-container {
             background-color: #000;
             border: 4px solid #111;
@@ -44,7 +65,6 @@
             margin-bottom: 20px;
         }
 
-        /* Patas o Base */
         .tv-legs {
             display: flex;
             justify-content: space-between;
@@ -62,7 +82,6 @@
             transform: skewX(10deg);
         }
 
-        /* Estilo de los controles personalizados */
         .controls-panel {
             background-color: #222;
             padding: 10px;
@@ -70,7 +89,7 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: -10px; /* Para que parezca parte del marco */
+            margin-top: -10px;
         }
 
         button {
@@ -80,7 +99,7 @@
             border: none;
             border-radius: 5px;
             font-weight: bold;
-            transition: transform 0.1s, background-color 0.2s;
+            transition: transform 0.1s;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -90,21 +109,10 @@
             transform: scale(0.95);
         }
 
-        /* Colores de los botones */
         #btn-play { background-color: #2ecc71; color: white; }
         #btn-pause { background-color: #f1c40f; color: #333; }
         #btn-stop { background-color: #e74c3c; color: white; }
         #btn-mute { background-color: #95a5a6; color: white; }
-
-        /* Decoración: Marca de la TV */
-        .tv-brand {
-            color: #bdc3c7;
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
 
     </style>
 </head>
@@ -112,7 +120,10 @@
 
     <div class="tv-set">
         <div class="tv-frame">
-            <div class="tv-brand">TV HCI: Desarrollo web y móvil</div>
+            <div class="tv-brand">
+                <img src="logo.png" alt="Logo Universidad" class="tv-logo">
+                RetroVision 3000
+            </div>
             
             <div class="screen-container">
                 <div id="player"></div>
@@ -133,25 +144,20 @@
     </div>
 
     <script>
-        // 4. LÓGICA JAVASCRIPT Y CONEXIÓN CON API
-
-        // Cargar la API de IFrame de YouTube de forma asíncrona
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        // Variable global para el reproductor
         var player;
 
-        // Esta función se ejecuta automáticamente cuando la API está lista
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
                 height: '100%',
                 width: '100%',
-                videoId: 'jfKfPfyJRdk', // ID del vídeo (lofi hip hop radio)
+                videoId: 'jfKfPfyJRdk', 
                 playerVars: {
-                    'controls': 0, // Ocultar controles nativos de YouTube
+                    'controls': 0,
                     'modestbranding': 1,
                     'rel': 0
                 },
@@ -161,33 +167,27 @@
             });
         }
 
-        // Cuando el reproductor está listo, conectamos los botones
         function onPlayerReady(event) {
-            
-            // Botón Play
             document.getElementById('btn-play').addEventListener('click', function() {
                 player.playVideo();
             });
 
-            // Botón Pausa
             document.getElementById('btn-pause').addEventListener('click', function() {
                 player.pauseVideo();
             });
 
-            // Botón Stop
             document.getElementById('btn-stop').addEventListener('click', function() {
                 player.stopVideo();
             });
 
-            // Botón Mute / Unmute (con lógica de cambio de texto)
             document.getElementById('btn-mute').addEventListener('click', function() {
                 if (player.isMuted()) {
                     player.unMute();
-                    this.innerHTML = '🔇 Mute'; // Cambiar texto del botón
+                    this.innerHTML = '🔇 Mute';
                     this.style.backgroundColor = '#95a5a6';
                 } else {
                     player.mute();
-                    this.innerHTML = '🔊 Unmute'; // Cambiar texto del botón
+                    this.innerHTML = '🔊 Unmute';
                     this.style.backgroundColor = '#e67e22';
                 }
             });
