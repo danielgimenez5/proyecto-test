@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Sombras y Gradientes CSS</title>
+    
+    <style>
+        /* Variables de color Burdeos */
+        :root {
+            --bordeaux-dark: #6D071A;
+            --bordeaux-light: #A52A2A; 
+            --button-color-start: #FFE4E1; 
+            --button-color-end: #FFB6C1;
+        }
+        
+        body {
+            background-color: #f0f0f0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+        }
+
+        /* Contenedor principal que agrupa todo */
+        .page-container {
+            width: 400px;
+            max-width: 90%;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden; 
+        }
+
+        /* --- Gradiente Lineal (Cabecera) y Sombra de Texto --- */
+        .app-header {
+            /* Gradiente Lineal */
+            background: linear-gradient(to right, var(--bordeaux-light), var(--bordeaux-dark));
+            color: white;
+            text-align: center;
+            padding: 30px 20px 20px;
+        }
+
+        .app-header h1 {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+            /* Sombra de Texto */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+        }
+
+        .app-header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 0;
+        }
+
+        .content-area {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* --- Gradiente Radial (Botón) --- */
+        .gradient-button {
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #444; 
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            margin-bottom: 25px;
+
+            /* Gradiente Radial */
+            background: radial-gradient(circle at top left, var(--button-color-start) 10%, var(--button-color-end) 90%); 
+        }
+
+        /* --- Ejemplos de Sombras de Caja (Box-Shadow) --- */
+        .shadow-examples {
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .shadow-box {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 0.9em;
+            border: 1px solid #eee;
+        }
+
+        /* Sombra Suave (Efecto Elevado) */
+        .shadow-box.soft {
+            /* Eje X, Eje Y, Desenfoque, Propagación, Color */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.08); 
+        }
+
+        /* Sombra Fuerte (Efecto Flotante) */
+        .shadow-box.hard {
+            box-shadow: 5px 5px 0 0 var(--bordeaux-dark);
+            border: 1px solid var(--bordeaux-dark);
+        }
+        
+        /* Sombra Interior (Inset) */
+        .shadow-box.inset {
+            /* Se añade la palabra 'inset' para que la sombra vaya hacia adentro */
+            box-shadow: inset 0 0 10px rgba(109, 7, 26, 0.5);
+            background-color: #fcecec;
+        }
+        
+        .shadow-box h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+            color: var(--bordeaux-dark);
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <header class="app-header">
+            <h1>Sombras y Gradientes CSS</h1>
+            <p>Ejemplo interactivo de efectos visuales.</p>
+        </header>
+
+        <div class="content-area">
+            <button class="gradient-button">Botón con Gradiente Radial</button>
+
+            <h2>Tipos de Sombra (Box-Shadow)</h2>
+            <div class="shadow-examples">
+                
+                <div class="shadow-box soft">
+                    <h3>Sombra Suave (Efecto 3D)</h3>
+                    <p><code>box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), ...</code></p>
+                </div>
+                
+                <div class="shadow-box hard">
+                    <h3>Sombra Fuerte (Contorno)</h3>
+                    <p><code>box-shadow: 5px 5px 0 0 #6D071A;</code></p>
+                </div>
+                
+                <div class="shadow-box inset">
+                    <h3>Sombra Interior (Inset)</h3>
+                    <p><code>box-shadow: inset 0 0 10px rgba(..., 0.5);</code></p>
+                </div>
+            </div>
+            
+            <p style="margin-top: 30px; font-size: 0.85em; opacity: 0.7;">El título principal usa una sombra de texto (<code>text-shadow</code>) sutil.</p>
+        </div>
+    </div>
+</body>
+</html>
