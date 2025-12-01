@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Transiciones y Transformaciones CSS</title>
+    
+    <style>
+        /* Variables */
+        :root {
+            --primary-color: #3498db; /* Azul */
+            --secondary-color: #2ecc71; /* Verde */
+            --bg-color: #f4f4f4;
+            --text-color: #333;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 40px;
+        }
+
+        .container {
+            display: flex;
+            gap: 50px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- 1. Botón con Transición de Color y Tamaño (Hover) --- */
+        .effect-button {
+            padding: 15px 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: white;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            
+            /* La transición se aplica al estado normal. Indica qué propiedades se animan (todas), 
+               en qué tiempo (0.3s) y con qué función de tiempo (ease-in-out). */
+            transition: all 0.3s ease-in-out;
+            
+            /* Define una sombra para el efecto de desplazamiento */
+            box-shadow: 0 5px 0 0 #2980b9; 
+        }
+
+        /* Efecto al pasar el cursor (Hover) */
+        .effect-button:hover {
+            background-color: #2980b9; /* Oscurece el color de fondo */
+            transform: scale(1.05); /* Aumenta el tamaño un 5% */
+        }
+
+        /* Efecto al presionar (Active) */
+        .effect-button:active {
+            /* Desplaza el botón hacia abajo para simular el "clic" */
+            transform: translateY(5px);
+            /* Esconde la sombra para que parezca que el botón ha "entrado" */
+            box-shadow: 0 0 0 0 #2980b9; 
+            transition: all 0.1s ease-out; /* Una transición más rápida para el clic */
+        }
+
+        /* --- 2. Caja con Transición de Rotación (Hover) --- */
+        .rotation-box {
+            width: 100px;
+            height: 100px;
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            
+            /* Transición aplicada solo a la propiedad 'transform' */
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de velocidad personalizada */
+        }
+
+        /* Efecto al pasar el cursor (Hover) */
+        .rotation-box:hover {
+            /* Rota la caja 135 grados */
+            transform: rotate(135deg); 
+            background-color: #27ae60;
+        }
+
+        /* --- 3. Animación de Fondo con Transición de Gradiente --- */
+        .background-box {
+            width: 250px;
+            height: 100px;
+            border-radius: 8px;
+            margin-top: 50px;
+            padding: 10px;
+            
+            /* Usamos un background position para simular la transición de gradiente */
+            background: linear-gradient(to right, #e74c3c 0%, #f1c40f 50%, #e74c3c 100%);
+            background-size: 200% auto; /* Hacemos el gradiente el doble de ancho */
+            
+            /* Transición aplicada solo al 'background-position' */
+            transition: background-position 0.5s ease-in-out; 
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Efecto al pasar el cursor (Hover) */
+        .background-box:hover {
+            /* Desplaza el fondo del gradiente 100% hacia la izquierda */
+            background-position: 100% center; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Ejemplo de Transiciones y Transformaciones</h1>
+
+    <div class="container">
+        <button class="effect-button">
+            Botón con Escala y Clic
+        </button>
+
+        <div class="rotation-box">
+            ROTAR
+        </div>
+    </div>
+    
+    <div class="background-box">
+        Hover para Desplazar Gradiente
+    </div>
+
+</body>
+</html>
