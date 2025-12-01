@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Grid Blueprint Responsive</title>
+    
+    <style>
+        /* Variables */
+        :root {
+            --grid-color: #e0e0e0;
+            --main-bg: #ffffff;
+            --header-bg: #34495e; /* Azul oscuro */
+            --header-color: white;
+            --box-color: #ecf0f1; /* Gris claro */
+            --blueprint-line: #bdc3c7; /* Línea de la cuadrícula */
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* --- 1. Contenedor Principal (Grid) --- */
+        .grid-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            
+            /* Define 12 columnas de igual ancho y un espacio de 10px entre ellas */
+            grid-template-columns: repeat(12, 1fr);
+            grid-gap: 10px;
+            background-color: var(--main-bg);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Estilo Blueprint (Opcional, solo para visualización) --- */
+        .grid-container > * {
+            border: 1px solid var(--blueprint-line); /* Borde para visualizar cada celda */
+            padding: 15px;
+            border-radius: 4px;
+            background-color: var(--box-color);
+            min-height: 50px;
+            text-align: center;
+        }
+
+        /* --- 2. Posicionamiento de Elementos en la Cuadrícula --- */
+
+        /* Cabecera: Ocupa las 12 columnas */
+        .header {
+            grid-column: 1 / span 12; /* Empieza en la línea 1 y abarca 12 columnas */
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 15px;
+        }
+
+        /* Columna Izquierda (Sidebar): Ocupa 3 columnas */
+        .sidebar-left {
+            grid-column: 1 / span 3; /* Empieza en 1, abarca 3 columnas */
+        }
+
+        /* Contenido Principal: Ocupa 6 columnas */
+        .main-content {
+            grid-column: 4 / span 6; /* Empieza en 4, abarca 6 columnas */
+        }
+        
+        /* Columna Derecha (Ads/Info): Ocupa 3 columnas */
+        .sidebar-right {
+            grid-column: 10 / span 3; /* Empieza en 10, abarca 3 columnas */
+        }
+
+        /* Pie de página: Ocupa las 12 columnas */
+        .footer {
+            grid-column: 1 / span 12;
+            background-color: var(--header-bg);
+            color: var(--header-color);
+            font-size: 0.9em;
+            padding: 10px 15px;
+        }
+
+        /* --- 3. Responsividad (Media Query) --- */
+        /* Para pantallas más pequeñas de 768px (Móviles y Tablets pequeñas) */
+        @media (max-width: 768px) {
+            
+            .grid-container {
+                /* Cambiamos a 2 columnas principales */
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            /* Hacemos que los elementos se apilen o usen el nuevo número de columnas */
+            .header, .footer {
+                grid-column: 1 / span 2; /* Ocupan 2 columnas */
+            }
+
+            .sidebar-left {
+                grid-column: 1 / span 2; /* Ocupa 2 columnas (se apila) */
+            }
+
+            .main-content {
+                grid-column: 1 / span 2; /* Ocupa 2 columnas (se apila) */
+                /* En móvil, a menudo queremos que el contenido principal vaya primero */
+                order: 4; 
+            }
+            
+            .sidebar-right {
+                grid-column: 1 / span 2; /* Ocupa 2 columnas (se apila) */
+                order: 3; /* Ponemos la columna derecha antes del contenido principal */
+            }
+        }
+
+        /* --- 4. Indicador de Tamaño de Ventana --- */
+        #viewport-indicator {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            font-size: 0.8em;
+            z-index: 1000;
+            border-top-left-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="header">
+            <h1>Cabecera (12 columnas)</h1>
+        </div>
+        
+        <div class="sidebar-left">
+            <h3>Barra Lateral Izquierda (3 columnas)</h3>
+            <p>Se apila en móvil.</p>
+        </div>
+        
+        <div class="main-content">
+            <h2>Contenido Principal (6 columnas)</h2>
+            <p>La columna central siempre es el foco. En móvil, esta sección toma el ancho completo de la nueva cuadrícula.</p>
+        </div>
+        
+        <div class="sidebar-right">
+            <h3>Barra Lateral Derecha (3 columnas)</h3>
+            <p>Se apila en móvil.</p>
+        </div>
+        
+        <div class="footer">
+            Pie de página (12 columnas) | Copyright 2025
+        </div>
+    </div>
+
+    <div id="viewport-indicator"></div>
+
+    <script>
+        const indicator = document.getElementById('viewport-indicator');
+
+        function updateIndicator() {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            indicator.textContent = `Ancho: ${width}px | Alto: ${height}px`;
+        }
+
+        // Ejecutar al cargar y al redimensionar
+        window.onload = updateIndicator;
+        window.onresize = updateIndicator;
+    </script>
+</body>
+</html>
