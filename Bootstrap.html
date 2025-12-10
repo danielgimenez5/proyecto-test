@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Responsiva con Bootstrap</title>
+    <!-- Importar Bootstrap CSS desde CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos adicionales opcionales para mejorar la visualización */
+        body {
+            background-color: #f8f9fa;
+        }
+        .tarjeta-demo {
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor principal centrado con margen vertical (my-4) -->
+    <div class="container my-4">
+        
+        <h1 class="text-center mb-4">Mi Página Responsiva</h1>
+        
+        <!-- Fila (Row): Contenedor flexible de Bootstrap -->
+        <!-- border, rounded, p-3, mb-3 son utilidades de borde, redondeado, padding y margen -->
+        <div class="row border rounded p-3 mb-3 tarjeta-demo align-items-center">
+            
+            <!-- Columna para la imagen -->
+            <!-- col-12: ocupa todo el ancho en móviles -->
+            <!-- col-md-4: ocupa 4 de 12 columnas en pantallas medianas (tablets/PC) -->
+            <div class="col-12 col-md-4 text-center">
+                <!-- img-fluid hace que la imagen se adapte al ancho de su contenedor -->
+                <img src="https://placehold.co/200" class="img-fluid rounded" alt="Imagen de ejemplo">
+            </div>
+            
+            <!-- Columna para el texto -->
+            <!-- col-12: ocupa todo el ancho en móviles -->
+            <!-- col-md-8: ocupa 8 de 12 columnas en pantallas medianas (el resto del espacio) -->
+            <div class="col-12 col-md-8">
+                <h3>Título del contenido</h3>
+                <p class="lead">
+                    Este es un ejemplo de cómo Bootstrap maneja la grilla responsiva.
+                </p>
+                <p>
+                    En una pantalla pequeña (como un móvil), la imagen y el texto se apilarán uno encima del otro (col-12). 
+                    En una pantalla más grande (md o superior), se colocarán uno al lado del otro, ocupando la imagen 1/3 del ancho y el texto 2/3.
+                </p>
+                <button class="btn btn-primary">Leer más</button>
+            </div>
+            
+        </div>
+
+        <!-- Duplicamos la fila para mostrar otro ejemplo -->
+        <div class="row border rounded p-3 mb-3 tarjeta-demo align-items-center">
+             <div class="col-12 col-md-8 order-2 order-md-1">
+                <h3>Otro bloque de contenido</h3>
+                <p>
+                    Bootstrap permite reordenar columnas fácilmente. En este segundo ejemplo, el texto aparece a la izquierda en escritorio (gracias a `order-md-1`), aunque en el código HTML está escrito después o antes dependiendo de cómo queramos estructurarlo para móviles.
+                </p>
+            </div>
+            <div class="col-12 col-md-4 text-center order-1 order-md-2">
+                <img src="https://placehold.co/200/orange/white" class="img-fluid rounded" alt="Imagen de ejemplo 2">
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Importar Bootstrap JS Bundle (incluye Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
