@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reto React: Contador</title>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; margin-top: 50px; }
+        .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; text-align: center; width: 300px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
+        button { padding: 10px 20px; font-size: 16px; margin: 5px; cursor: pointer; }
+        .btn-add { background-color: #4CAF50; color: white; border: none; }
+        .btn-reset { background-color: #f44336; color: white; border: none; }
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        // Extraemos useState de la librería React
+        const { useState } = React;
+
+        const App = () => {
+            // 1. ESTADO: numero empieza en 0
+            const [numero, setNumero] = useState(0);
+
+            // Lógica del mensaje (cambia automáticamente si numero cambia)
+            // Si es menor que 5 dice "¡Vamos!", si es 5 o más dice "¡Bien!"
+            const mensaje = numero < 5 ? "¡Vamos!" : "¡Bien!";
+
+            return (
+                <div className="card">
+                    <h1>Actividad Mini</h1>
+                    
+                    {/* Mostramos el número */}
+                    <h2 style={{ fontSize: '3rem', margin: '10px 0' }}>{numero}</h2>
+                    
+                    {/* Mensaje condicional */}
+                    <h3>{mensaje}</h3>
+
+                    {/* Botón +1 */}
+                    <button 
+                        className="btn-add" 
+                        onClick={() => setNumero(numero + 1)}
+                    >
+                        +1
+                    </button>
+
+                    {/* Botón Reset */}
+                    <button 
+                        className="btn-reset" 
+                        onClick={() => setNumero(0)}
+                    >
+                        Reset
+                    </button>
+                </div>
+            );
+        };
+
+        // Renderizamos la App en el div "root"
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+</html>
