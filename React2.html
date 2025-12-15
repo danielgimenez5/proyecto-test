@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador + Nombre</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; margin-top: 50px; background-color: #f0f2f5; }
+        .card { background: white; padding: 30px; border-radius: 15px; text-align: center; width: 350px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
+        button { padding: 10px 15px; font-size: 1rem; margin: 5px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; color: white;}
+        .plus { background-color: #4CAF50; }
+        .minus { background-color: #FF9800; }
+        .reset { background-color: #f44336; }
+        
+        /* Estilos para el input nuevo */
+        input { padding: 8px; border-radius: 5px; border: 1px solid #ccc; width: 80%; margin-bottom: 15px; font-size: 1rem; text-align: center;}
+        
+        .mensaje { font-size: 1.5rem; color: #333; margin: 20px 0; min-height: 30px;}
+    </style>
+</head>
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const App = () => {
+            // VARIABLE 1 (Número): El contador
+            const [count, setCount] = useState(0);
+
+            // VARIABLE 2 (Texto): El nombre del usuario
+            // Inicialmente está vacío ("")
+            const [nombre, setNombre] = useState("");
+
+            // Lógica del mensaje combinando ambas variables
+            // Si hay nombre, decimos "Hola [Nombre]", si no, texto genérico
+            const saludo = nombre ? `Hola, ${nombre}` : "Hola, desconocido";
+            const animo = count < 5 ? "¡Vamos!" : "¡Bien!";
+
+            return (
+                <div className="card">
+                    <h2>Panel de Control</h2>
+
+                    {/* INPUT para cambiar la VARIABLE 2 */}
+                    <input 
+                        type="text" 
+                        placeholder="Escribe tu nombre aquí..." 
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
+                    />
+
+                    {/* Usamos las variables en el texto */}
+                    <div className="mensaje">
+                        <small>{saludo}</small><br/>
+                        <strong>{animo}</strong>
+                    </div>
+
+                    <div className="botones">
+                        <button className="plus" onClick={() => setCount(count + 1)}>+1</button>
+                        <button className="minus" onClick={() => setCount(Math.max(0, count - 1))}>-1</button>
+                        <button className="reset" onClick={() => {
+                            setCount(0);
+                            setNombre(""); // El reset también borra el nombre
+                        }}>Reset</button>
+                    </div>
+
+                    <p>Contador: <strong>{count}</strong></p>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+
+</body>
+</html>
