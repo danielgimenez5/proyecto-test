@@ -3,18 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reto React: Contador</title>
+    <title>Contador React </title>
     
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; margin-top: 50px; }
-        .card { border: 1px solid #ccc; padding: 20px; border-radius: 10px; text-align: center; width: 300px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); }
-        button { padding: 10px 20px; font-size: 16px; margin: 5px; cursor: pointer; }
-        .btn-add { background-color: #4CAF50; color: white; border: none; }
-        .btn-reset { background-color: #f44336; color: white; border: none; }
+        body { font-family: sans-serif; display: flex; justify-content: center; margin-top: 50px; background-color: #f0f2f5; }
+        .card { background: white; padding: 30px; border-radius: 15px; text-align: center; width: 350px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        
+        /* Estilos para tus botones específicos */
+        button { padding: 10px 15px; font-size: 1rem; margin: 5px; cursor: pointer; border-radius: 5px; border: none; font-weight: bold; transition: transform 0.1s;}
+        button:active { transform: scale(0.95); }
+        
+        .plus { background-color: #4CAF50; color: white; } /* Verde */
+        .minus { background-color: #FF9800; color: white; } /* Naranja */
+        .reset { background-color: #f44336; color: white; } /* Rojo */
+        
+        p { font-size: 1.2rem; }
+        .mensaje { font-size: 1.5rem; color: #333; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -22,47 +30,45 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        // Extraemos useState de la librería React
         const { useState } = React;
 
         const App = () => {
-            // 1. ESTADO: numero empieza en 0
-            const [numero, setNumero] = useState(0);
+            // Usamos 'count' como en tu código
+            const [count, setCount] = useState(0);
 
-            // Lógica del mensaje (cambia automáticamente si numero cambia)
-            // Si es menor que 5 dice "¡Vamos!", si es 5 o más dice "¡Bien!"
-            const mensaje = numero < 5 ? "¡Vamos!" : "¡Bien!";
+            // Recuperamos la lógica del mensaje de la actividad original
+            const mensaje = count < 5 ? "¡Vamos!" : "¡Bien!";
 
             return (
                 <div className="card">
-                    <h1>Actividad React</h1>
+                    <h1>Contador React</h1>
                     
-                    {/* Mostramos el número */}
-                    <h2 style={{ fontSize: '3rem', margin: '10px 0' }}>{numero}</h2>
+                    {/* Mensaje dinámico (requisito de la actividad) */}
+                    <div className="mensaje">{mensaje}</div>
+
+                    {/* --- TU CÓDIGO AQUÍ --- */}
                     
-                    {/* Mensaje condicional */}
-                    <h3>{mensaje}</h3>
+                    <div className="botones">
+                        <button className="plus" onClick={() => setCount(count + 1)}>
+                            +1
+                        </button>
+                        
+                        <button className="minus" onClick={() => setCount(Math.max(0, count - 1))}>
+                            -1
+                        </button>
+                        
+                        <button className="reset" onClick={() => setCount(0)}>
+                            Reset
+                        </button>
+                    </div>
 
-                    {/* Botón +1 */}
-                    <button 
-                        className="btn-add" 
-                        onClick={() => setNumero(numero + 1)}
-                    >
-                        +1
-                    </button>
-
-                    {/* Botón Reset */}
-                    <button 
-                        className="btn-reset" 
-                        onClick={() => setNumero(0)}
-                    >
-                        Reset
-                    </button>
+                    <p>Contador: <strong>{count}</strong></p>
+                    
+                    {/* ---------------------- */}
                 </div>
             );
         };
 
-        // Renderizamos la App en el div "root"
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
